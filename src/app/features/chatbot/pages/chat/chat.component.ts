@@ -1,4 +1,4 @@
-import { NgClass } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChatService } from '../../../../core/services/chat.service';
@@ -8,7 +8,7 @@ import { ChatService } from '../../../../core/services/chat.service';
   standalone: true,
   imports: [
     FormsModule,
-    NgClass
+    CommonModule
   ],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss'
@@ -27,9 +27,15 @@ export class ChatComponent {
     this.messages.push({text: this.userInput.message, sender: 'Você'});
     this.data.message = this.userInput.message;
     this.chatService.test(this.data).subscribe((response) => {
-      this.messages.push({text: response.habilidades_descritas, sender: 'Chatbot', color: 'green'});
-      this.messages.push({text: response.habilidades_faltantes, sender: 'Chatbot', color: 'red'});
-      this.messages.push({text: response.response, sender: 'Chatbot', color: 'yellow'});
+      if(response.habilidades_descritas){
+        this.messages.push({text: 'Habilidades do colaborador: ' + response.habilidades_descritas, sender: 'Chatbot', color: 'green'});
+      }
+      if(response.habilidades_faltantes){
+        this.messages.push({text: 'Habilidades que faltam ao colaborador: ' + response.habilidades_faltantes, sender: 'Chatbot', color: 'red'});
+      }
+      if(response.habilidades_relacionadas){
+        this.messages.push({text: 'Habilidades que podem estar relacionadas baseada em outros conhecimentos do colaborador: ' + response.habilidades_relacionadas, sender: 'Chatbot', color: 'orange'});
+      }
     });
 
     this.userInput.message = '';

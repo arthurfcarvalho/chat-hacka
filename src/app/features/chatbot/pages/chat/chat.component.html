@@ -4,7 +4,7 @@
         @for (message of messages; track $index) {
         <div class="message" [ngClass]="{'user-message': message.sender === 'Você'}">
             <div class="sender">{{ message.sender }}</div>
-            <p [ngClass]="{'color': message.color}" >{{ message.text }}</p>
+            <p [ngStyle]="{'color': message.color}" >{{ message.text }}</p>
             @if(message.options) {
                 <div class="options-container">
                     @for(options of message.options; track $index) {

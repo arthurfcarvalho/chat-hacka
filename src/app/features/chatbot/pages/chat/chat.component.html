@@ -1,0 +1,27 @@
+<div class="chat-container">
+    <h1 class="title">Chatbot</h1>
+    <div class="messages">
+        @for (message of messages; track $index) {
+        <div class="message" [ngClass]="{'user-message': message.sender === 'Você'}">
+            <div class="sender">{{ message.sender }}</div>
+            {{ message.text }}
+            @if(message.options) {
+                <div class="options-container">
+                    @for(options of message.options; track $index) {
+                        <div>
+                            <input type="radio" [name]="message.text" [value]="message.options[$index]" [(ngModel)]="selectedOption" /> {{ message.options[$index] }}
+                        </div>
+                    }       
+                    <button (click)="sendOption(selectedOption)" [disabled]="!selectedOption">Enviar</button>
+                </div>
+            }
+        </div>
+        }
+    </div>
+    <div class="input-container">
+        <input [(ngModel)]="userInput" (keydown.enter)="sendMessage()" placeholder="Digite sua mensagem..." />
+        <button (click)="sendMessage()">Enviar</button>
+        <!-- <button (click)="addMessageWithOptions()">Adicionar Mensagem com Opções</button> -->
+    </div>
+</div>
+

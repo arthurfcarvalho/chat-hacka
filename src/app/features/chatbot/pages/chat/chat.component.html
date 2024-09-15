@@ -4,7 +4,7 @@
         @for (message of messages; track $index) {
         <div class="message" [ngClass]="{'user-message': message.sender === 'Você'}">
             <div class="sender">{{ message.sender }}</div>
-            {{ message.text }}
+            <p [ngClass]="{'color': message.color}" >{{ message.text }}</p>
             @if(message.options) {
                 <div class="options-container">
                     @for(options of message.options; track $index) {
@@ -19,7 +19,7 @@
         }
     </div>
     <div class="input-container">
-        <input [(ngModel)]="userInput" (keydown.enter)="sendMessage()" placeholder="Digite sua mensagem..." />
+        <input [(ngModel)]="userInput.message" (keydown.enter)="sendMessage()" placeholder="Digite sua mensagem..." />
         <button (click)="sendMessage()">Enviar</button>
         <!-- <button (click)="addMessageWithOptions()">Adicionar Mensagem com Opções</button> -->
     </div>

@@ -37,7 +37,7 @@ export class ChatComponent {
         this.messages.push({text: 'Habilidades que podem estar relacionadas baseada em outros conhecimentos do colaborador: ' + response.habilidades_relacionadas, sender: 'Chatbot', color: 'orange'});
       }
 
-      this.messages.push({text: 'Quantidade de competências: ', sender: 'Chatbot', slider: true, min: 0, max: response.habilidades_descritas + response.habilidades_faltantes, value: response.habilidades_descritas.length});
+      this.messages.push({text: 'Quantidade de competências: ', sender: 'Chatbot', slider: true, min: 0, max: (response.habilidades_descritas + response.habilidades_faltantes), value: response.habilidades_descritas.length});
       
     });
 

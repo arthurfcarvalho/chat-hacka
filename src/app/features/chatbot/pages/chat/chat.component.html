@@ -15,10 +15,10 @@
                     <button (click)="sendOption(selectedOption)" [disabled]="!selectedOption">Enviar</button>
                 </div>
             }
-            @if(message.slider){
-                <input type="range" min="message.min" max="message.max" [value]="message.value" step="message.value" [disabled]="true"/>
+<!--             @if(message.slider){
+                <input type="range" [min]="message.min" [max]="message.max" [value]="message.value" [step]="message.value" [disabled]="true"/>
                 <output>  {{message.value}}</output>
-            }
+            } -->
         </div>
         }
     </div>

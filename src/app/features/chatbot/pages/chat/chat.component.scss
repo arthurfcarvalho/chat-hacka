@@ -1,16 +1,26 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 :host {
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100vh;
     background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
 
     .title {
         position: absolute;
         top: 20px;
         left: 20px;
         margin: 0;
+        font-size: 2rem;
+        color: #333;
     }
 
     .chat-container {
@@ -30,6 +40,7 @@
             flex: 1;
             margin-top: 60px;
             overflow-y: auto;
+            padding-right: 10px;
 
             .message {
                 background-color: #f1f1f1;
@@ -38,6 +49,12 @@
                 margin-bottom: 10px;
                 max-width: 100%;
                 word-wrap: break-word;
+                transition: background-color 0.3s;
+                animation: fadeIn 0.5s ease-in-out;
+
+                &:hover {
+                    background-color: #e0e0e0;
+                }
 
                 &.user-message {
                     background-color: #d1e7dd;
@@ -48,6 +65,7 @@
                 .sender {
                     font-weight: bold;
                     margin-bottom: 5px;
+                    color: #007bff;
                 }
 
                 .options-container {
@@ -62,6 +80,18 @@
                     button {
                         margin-top: 10px;
                         align-self: flex-start;
+                        padding: 5px 10px;
+                        border: none;
+                        border-radius: 5px;
+                        background-color: #007bff;
+                        color: white;
+                        cursor: pointer;
+                        transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
+
+                        &:hover {
+                            background-color: #0056b3;
+                            transform: scale(1.05);
+                        }
                     }
                 }
             }
@@ -79,6 +109,11 @@
                 border: 1px solid #ccc;
                 border-radius: 5px;
                 margin-right: 10px;
+                transition: border-color 0.3s;
+
+                &:focus {
+                    border-color: #007bff;
+                }
             }
 
             button {
@@ -88,9 +123,11 @@
                 background-color: #007bff;
                 color: white;
                 cursor: pointer;
+                transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
 
                 &:hover {
                     background-color: #0056b3;
+                    transform: scale(1.05);
                 }
             }
         }

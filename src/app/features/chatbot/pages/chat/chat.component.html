@@ -1,5 +1,5 @@
 <div class="chat-container">
-    <h1 class="title">Chatbot</h1>
+    <h1 class="title">ChatHACKA</h1>
     <div class="messages">
         @for (message of messages; track $index) {
         <div class="message" [ngClass]="{'user-message': message.sender === 'Você'}">
@@ -15,13 +15,16 @@
                     <button (click)="sendOption(selectedOption)" [disabled]="!selectedOption">Enviar</button>
                 </div>
             }
+            @if(message.slider){
+                <input type="range" min="message.min" max="message.max" [value]="message.value" step="message.value" [disabled]="true"/>
+                <output>  {{message.value}}</output>
+            }
         </div>
         }
     </div>
     <div class="input-container">
         <input [(ngModel)]="userInput.message" (keydown.enter)="sendMessage()" placeholder="Digite sua mensagem..." />
         <button (click)="sendMessage()">Enviar</button>
-        <!-- <button (click)="addMessageWithOptions()">Adicionar Mensagem com Opções</button> -->
     </div>
 </div>
 
